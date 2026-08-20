@@ -72,3 +72,21 @@ export function searchProducts () {
   }
 }
 // vuln-code-snippet end unionSqlInjectionChallenge dbSchemaChallenge
+
+// --- Injected for AI SAST testing ---
+export function productDetail () {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const productId = req.params.id
+    // Vulnerable: SQL injection via string concatenation (same pattern as search above)
+    models.sequelize.query(`SELECT p.*, AVG(r.rating) as avgRating FROM Products p LEFT JOIN Reviews r ON p.id = r.ProductId WHERE p.id = '${productId}' AND p.deletedAt IS NULL GROUP BY p.id`)
+      .then(([products]: any) => {
+        if (products.length === 0) {
+          res.status(404).json({ error: 'Product not found' })
+        } else {
+          res.json({ status: 'success', data: products[0] })
+        }
+      }).catch((error: Error) => {
+        next(error)
+      })
+  }
+}
