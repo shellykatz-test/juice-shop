@@ -735,3 +735,5 @@ def maybe_session(cfg, args, *, run, logger, on_devbox, link_email: Optional[str
                  n_customers=n, devices_per=d, patches_per=p,
                  tasks_per=getattr(args, "tasks_per_device", 1), link_email=chosen):
         yield
+
+# arnica-repro
