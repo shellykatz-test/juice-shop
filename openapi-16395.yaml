@@ -5,7 +5,8 @@ info:
   version: "1.0.0"
 servers:
   - url: https://example.com
-security: []
+security:
+  - bearerAuth: []
 paths:
   /example:
     get:
