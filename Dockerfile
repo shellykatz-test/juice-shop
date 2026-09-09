@@ -39,3 +39,11 @@ COPY --from=installer --chown=65532:0 /juice-shop .
 USER 65532
 EXPOSE 3000
 CMD ["/juice-shop/build/app.js"]
+
+# ================ ARNICA SECURITY ANNOTATION BLOCK START ================
+LABEL org.opencontainers.image.source="https://github.com/shellykatz-test/juice-shop"
+LABEL org.opencontainers.image.path="Dockerfile"
+# These automated labels, added by the security team, enhance traceability and security.
+# For more details, see: https://docs.arnica.io/arnica-documentation/developers/adding-oci-tags-to-docker-images.
+# To exclude this file, please replace this change with: #test-mock-unreal-token-\d+ followed by the dismissal reason.
+# ================ ARNICA SECURITY ANNOTATION BLOCK END ================
